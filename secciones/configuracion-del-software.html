@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración del Software</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Configuración del Software</h1>
+    </header>
+
+    <nav id="sidebar" class="sidebar">
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <ul>
+            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/index.html">Bienvenida</a></li>
+            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/introduccion.html">Introducción</a></li>
+            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/requisitos-del-sistema.html">Requisitos del Sistema</a></li>
+            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/instalacion-del-hardware.html">Instalación del Hardware</a></li>
+            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/configuracion-del-software.html">Configuración del Software</a></li>
+            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/uso-de-los-sensores-y-perifericos.html">Uso de los Sensores y Periféricos</a></li>
+            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/integracion-y-proyectos-ejemplares.html">Integración y Proyectos Ejemplares</a></li>
+            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/solucion-de-problemas.html">Solución de Problemas</a></li>
+            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/mantenimiento-y-seguridad.html">Mantenimiento y Seguridad</a></li>
+            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/apendices.html">Apéndices</a></li>
+            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/licencia-y-creditos.html">Licencia y Créditos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="configuracion-software">
+            <h2>Configuración del Software</h2>
+            <h3>Instalación del Sistema Operativo</h3>
+            <p>Descargar e instalar Raspberry Pi OS...</p>
+            <h3>Configuración Inicial</h3>
+            <p>Conexión a internet, actualización del sistema...</p>
+            <h3>Instalación de Bibliotecas y Dependencias</h3>
+            <p>Comandos para instalar las bibliotecas necesarias:</p>
+            <pre><code>sudo apt-get update
+sudo apt-get install python3
+pip install RPi.GPIO</code></pre>
+        </section>
+    </main>
+
+    <main>
+        <section id="configuracion-del-software">
+            <h2>Configuración del Software</h2>
+            <ol>
+                <li>Prepara la tarjeta SD con el sistema operativo Raspberry Pi OS.</li>
+                <li>Configura el usuario y la contraseña durante la instalación inicial.</li>
+                <li>Habilita SSH y encuentra la dirección IP de la Raspberry Pi.</li>
+                <li>Conéctate a la Raspberry Pi mediante SSH.</li>
+                <li>Ejecuta los comandos para instalar las dependencias necesarias.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Instalando dependencias</h2>
+            <p>Para instalar todas las dependencias necesarias ejecuta el script instalar_dependencias.sh de la siguiente forma:</p>
+            <center><pre><code>chmod +x instalar_dependencias.sh</code></pre></center>
+
+        </section>
+    </main>
+    
+
+    <footer>
+        <p>&copy; 2024 CarlimpCorp. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
