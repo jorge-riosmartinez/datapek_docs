@@ -32,8 +32,131 @@
     <main>
         <section id="introduccion">
             <h2><center>¿Qué es Datapek?</center></h2>
-            <p></p>
+            <p>Datapek es un proyecto de CarlimpCorp en el que se busca monitorear diferentes acciones de los caninos por medio de sensores conectados a una Raspberry Pi Zero, esta se encarga de recolectar diversos datos como la temperatura corporal, el movimiento de la cola, los sonidos que produce y los movimientos que realiza.</p>
+
+            <h2><center>¿Cómo se ve Datapek?</center></h2>
+            <p>Actualmente Datapek cuenta con un modelo, mismo que se muestra a continuación:</p>
+            <img src="/assets/fotos/frente.jpeg" class="datapek-imagenes" alt="Datapek visto de frente">
+            <img src="/assets/fotos/arriba.jpeg" class="datapek-imagenes" alt="Datapek visto desde arriba">
+            <img src="/assets/fotos/derecha.jpeg" class="datapek-imagenes" alt="Datapek visto desde la derecha">
+            <img src="/assets/fotos/izquierda.jpeg" class="datapek-imagenes" alt="Datapek visto desde la izquierda">
         </section>
+
+        <section>
+            <h2><center>Primeros pasos con Datapek</center></h2>
+            <p>
+
+            </p>
+        </section>
+
+
+        <section id="instalacion">
+            <h2>Instalación del Firmware</h2>
+            <p>Sigue estos pasos para instalar y configurar el firmware en tu Raspberry Pi:</p>
+            
+            <h3>Preparación de la Tarjeta SD</h3>
+            <ol>
+                <li><strong>Grabar la imagen del sistema operativo:</strong>
+                    <ul>
+                        <li>Descargue y abra el <a href="https://www.raspberrypi.com/software/" target="_blank">Raspberry Pi Imager</a> en su computadora personal.</li>
+                        <li>Dentro del programa Raspberry Pi imager presione la combinación de teclas <code>CTRL + SHIFT + X</code> de modo que se desplegará una nueva ventana llamada "Personalizacíon del SO"</li>
+                        <center><img src="assets/capturas/rpi-imager-personalizacion-del-so.png" height="500" alt="Menú Personalización del SO dentro RPI imager"></center>
+                        <li>Ingrese todos los datos tal como se muestran en la imágen superior, excepto los ajustes regionales, puede usar la contraseña que usted desee, se sugiere usar la contraseña <code>datapek2024</code> tanto para usuario como para SSID.</li>
+                        <li>Seleccione la pestaña "Servicios" dentro de la ventana activa y asegurese de tener activas las casillas de "Activar SSH" y "Usar autenticación por contraseña". Una vez hecho seleccione el botón guardar.</li>
+                        <center><img src="assets/capturas/rpi-imager-ssh.png" height="500" alt="Habilitar SSH mediante la personalización del SO dentro RPI imager"></center>
+                        <li>Seleccione el dispositivo "Raspberry Pi Zero" y grabe la imagen en una tarjeta SD.</li>
+                        <li>Seleccione el sistema operativo "Raspberry Pi OS (Legacy, 32-bit): A port of Debian Bullseye with security updates and desktop environment".</li>
+                        <li>Ingrese su tarjeta micro SD y en la tercera opción, seleccione su tarjeta micro SD para grabar la imagen en dicha tarjeta, tome en cuenta que los datos que tenía esta micro SD se borrarán, se aconseja hacer un respaldo de los mismos.</li>
+                    </ul>
+                </li>
+                <li><strong>Descargar Termux:</strong></li>
+                <ul>
+                    <li>Descargue e instale la aplicación <a href="https://play.google.com/store/apps/details?id=com.termux" target="_blank">Termux</a> desde Google Play Store.</li>
+                    <li>Abra Termux y actualice los paquetes con los siguientes comandos:</li>
+                    <pre><code>pkg update && pkg upgrade</code></pre>
+                    <li>Instale el paquete de OpenSSH:</li>
+                    <pre><code>pkg install openssh</code></pre>
+                </ul>
+                <li><strong>Conexión SSH:</strong>
+                    <ul>
+                        <li>Desde su teléfono celular abra la configuración, seleccione Redes móviles > Zona Wi-Fi personal y cambie el nombre del dispositvo a <code>wifi_datapek</code> y la contraseña a <code>datapek2024</code>. Una vez hecho encienda su Zona Wi-Fi personal. Una vez hecho iInserte la tarjeta SD en su Raspberry Pi Zero y enciéndala.</li>
+                        <li>Busque la dirección IP de su Raspberry Pi Zero en su red, en algunos teléfonos móviles puede consultar los dispositivos conectados a su zona Wi-Fi personal, en caso contrario descargue la aplicación Fing (disponibles desde Play Store y AppStore) en otro dispositivo y conéctese a la zona móvil para conocer la dirección IP de su Raspberry Pi Zero.</li>
+                        <li>Una vez que sepa la dirección IP de su Raspberry PI Zero, conéctese por SSH desde Termux ingresando el siguiente comando</li>
+                        <center><code>ssh datapek@[IP DE LA RASPBERRY] <p>sustituyendo [IP DE LA RASPBERRY] por la IP que encontró previamente.</p></code></center>
+                    </ul>
+                </li>
+            </ol>
+        </br>
+
+            <h3>Configuración del dispositivo</h3>
+            <p>Abrir el menú de Configuración:</p>
+            <pre><code>sudo raspi-config</code></pre>
+            <p>Navegar a interface options y habilitar las siguientes opciones:</p>
+            <ul>
+                <li>Legacy camera</li>
+                <li>i2c</li>
+                <li>1wire</li>
+            </ul>
+            <p>Ejecuta:</p>
+            <pre><code>sudo reboot</code></pre>
+
+            <h3>Obtener scripts</h3>
+            <p>Reconéctate a la Raspberry Pi y clona el repositorio:</p>
+            <pre><code>git clone https://github.com/DrCarlimp/Datapek-cc/tree/development</code></pre>
+
+            <h3>Instalación de Dependencias</h3>
+            <p>Una vez conectado a la Raspberry Pi via SSH, ejecuta los siguientes comandos para instalar las dependencias necesarias:</p>
+
+            <h3>Diagnóstico</h3>
+            <p>Ejecutar el diagnóstico que permite conocer el funcionamiento de los sensores:</p>
+            <ul>
+                <li>Temperatura</li>
+                <li>IMU</li>
+                <li>LEDs</li>
+            </ul>
+            <pre><code>python firmware/utils/diagnostico.py</code></pre>
+
+            <h3>Uso</h3>
+            <p>Para iniciar la recolección de datos, es necesario usar el script <code>adquisicion_datos.py</code>. Dicho script toma los siguientes argumentos:</p>
+            <pre><code>-n, --nombre_perro: Nombre del perro
+-p, --prueba: nombre de la prueba, por ejemplo juguete
+-d, --duracion: duracion de la prueba en segundos
+--imu: activa la recolección de datos del IMU
+--camara: activa la grabacion de video de la camara
+--audio: activa la grabacion de audio del microfono
+--temperatura: activa la recolección de datos del sensor ds18b20</code></pre>
+            <p>Las salidas del script son:</p>
+            <ul>
+                <li>Carpeta con el nombre del perro</li>
+                <ul>
+                    <li>Carpeta con el nombre de la prueba</li>
+                    <ul>
+                        <li>Archivos de los sensores seleccionados</li>
+                    </ul>
+                </ul>
+            </ul>
+            <p>Ejemplo:</p>
+            <p>Habilitar zona wifi en teléfono móvil con las credenciales:</p>
+            <pre><code>SSID: wifi_datapek
+Password: 2023Datapek</code></pre>
+            <p>Una vez que el dispositivo esté conectado a la red, buscar la IP de Datapek.</p>
+            <p>Posteriormente abrir una aplicación de "terminal". Por ejemplo, Terminus. Usar la IP para conectarse mediante SSH al dispositivo:</p>
+            <pre><code>ssh uady@IP de Datapek
+por ejemplo
+ssh uady@192.168.68.100
+password: datapek2023</code></pre>
+            <p>Para la ejecución del script de adquisición de datos se puede correr esta instrucción:</p>
+            <pre><code>python firmware/adquisicion_datos.py -n doug -p test -d 20 --imu --camara --audio --temperatura</code></pre>
+            <p>Los argumentos relacionados con los sensores son opcionales, pueden elegirse únicamente los de interés para la prueba.</p>
+            <p>Finalmente, los datos obtenidos se pueden encontrar en:</p>
+            <pre><code>/home/uady/doug/test</code></pre>
+        </section>
+
+
+
+
+
+
     </main>
 
     <footer>
