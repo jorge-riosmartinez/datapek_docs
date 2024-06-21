@@ -36,10 +36,10 @@
 
             <h2><center>¿Cómo se ve Datapek?</center></h2>
             <p>Actualmente Datapek cuenta con un modelo, mismo que se muestra a continuación:</p>
-            <img src="assets/fotos/frente.jpeg" class="datapek-imagenes" alt="Datapek visto de frente">
-            <img src="assets/fotos/arriba.jpeg" class="datapek-imagenes" alt="Datapek visto desde arriba">
-            <img src="assets/fotos/derecha.jpeg" class="datapek-imagenes" alt="Datapek visto desde la derecha">
-            <img src="assets/fotos/izquierda.jpeg" class="datapek-imagenes" alt="Datapek visto desde la izquierda">
+            <img src="assets/fotos/frente.jpeg" height="500" alt="Datapek visto de frente">
+            <img src="assets/fotos/arriba.jpeg" height="500" alt="Datapek visto desde arriba">
+            <img src="assets/fotos/derecha.jpeg" height="500" alt="Datapek visto desde la derecha">
+            <img src="assets/fotos/izquierda.jpeg" height="500" alt="Datapek visto desde la izquierda">
         </section>
 
         <section>
@@ -79,44 +79,71 @@
                 </ul>
                 <li><strong>Conexión SSH:</strong>
                     <ul>
-                        <li>Desde su teléfono celular abra la configuración, seleccione Redes móviles > Zona Wi-Fi personal y cambie el nombre del dispositvo a <code>wifi_datapek</code> y la contraseña a <code>datapek2024</code>. Una vez hecho encienda su Zona Wi-Fi personal. Una vez hecho iInserte la tarjeta SD en su Raspberry Pi Zero y enciéndala.</li>
+                        <li>Desde su teléfono celular abra la configuración, seleccione Redes móviles > Zona Wi-Fi personal y cambie el nombre del dispositvo a <code>wifi_datapek</code> y la contraseña a <code>datapek2024</code>. Una vez hecho encienda su Zona Wi-Fi personal. Luego innserte la tarjeta SD en su Raspberry Pi Zero y enciéndala.</li>
                         <li>Busque la dirección IP de su Raspberry Pi Zero en su red, en algunos teléfonos móviles puede consultar los dispositivos conectados a su zona Wi-Fi personal, en caso contrario descargue la aplicación Fing (disponibles desde Play Store y AppStore) en otro dispositivo y conéctese a la zona móvil para conocer la dirección IP de su Raspberry Pi Zero.</li>
                         <li>Una vez que sepa la dirección IP de su Raspberry PI Zero, conéctese por SSH desde Termux ingresando el siguiente comando</li>
                         <center><code>ssh datapek@[IP DE LA RASPBERRY] <p>sustituyendo [IP DE LA RASPBERRY] por la IP que encontró previamente.</p></code></center>
                     </ul>
+                    <p>Una vez dentro de la Raspberry Pi Zero, es necesario actualizar los paquetes, para ello usaremos el comando <code>sudo apt update && sudo apt upgrade -y</code></p>
                 </li>
             </ol>
         </br>
 
-            <h3>Configuración del dispositivo</h3>
-            <p>Abrir el menú de Configuración:</p>
+            <center><h1>Configuración de Virtual Network Computing (VNC)</h1></center>
+            <p>Primero tenemos que saber para que querríamos activar esta opción, esta opción nos permite el acceso remoto a la interfaz gráfica de usuario (GUI) de la Raspberry Pi desde otra computadora. Esto es útil para controlar la Raspberry Pi sin necesidad de conectar un monitor, teclado y ratón directamente </p>
+
+            <h2>1. Instalar RealVNC</h2>
+            <p>Use el siguiente comando desde su Raspberry Pi Zero para descargar RealVNC: <pre><code>sudo apt-get install realvnc-vnc-server</code></pre></p>
+
+            <h2>2. Activar VNC desde raspi-config</h2>
+            <p>Ingrese el comando: </p><pre><code>sudo raspi-config</code></pre>
+            <p>Debe poder ver una pantalla como la siguiente: </p>
+            <center><img src="assets/capturas/raspi-config.png" height="400" alt="menú de sudo raspi-config"></center>
+            <p>Navegue a <strong>Interfacing Options</strong> -> <strong>VNC</strong> y selecciona <strong>Enable</strong>.</p>
+            <p>Sin salir del menú de configuración de la Raspberry Pi, navegue a System Options -> Boot / Auto Login -> Desktop / CLI y seleccione la opción <b>B4 Desktop GUI, automatically logged in as 'datapek' user.</b></p>
+
+
+            <h2>3. Reiniciar el servicio VNC</h2>
+            <p>Asegúrese de que el servicio VNC está corriendo con los siguientes comandos:</p>
+            <pre><code>sudo systemctl start vncserver-x11-serviced.service</code></pre>
+            <pre><code>sudo systemctl enable vncserver-x11-serviced.service</code></pre>
+
+            <h2>4. Conectar al VNC Server</h2>
+            <p>Desde su computadora, use un cliente VNC (como RealVNC Viewer) para conectarse a la dirección IP de tu Raspberry Pi.</p>
+            <p>Abra RealVNC Viewer e introduzca la dirección IP de su Raspberry Pi para conectarse.</p>
+            <p>Ingrese el usuario y contraseña que configuró para conectarse por SSH y presione el botón continuar.</p>
+            <p>Reinicie y debe ser capaz de visualizar un escritorio como el siguiente: </p>
+            <center><img src="assets/capturas/rasp.png" height="500" alt="Escritorio de Raspberry en modo Headless por medio de VNC"></center>
+
+        <center><h1>Habilitar opciones necesarias</h1></center>
+
+            <p>Abra el menú de Configuración con el comando:</p>
             <pre><code>sudo raspi-config</code></pre>
-            <p>Navegar a interface options y habilitar las siguientes opciones:</p>
+            <p>Navegue a interface options y habilite las siguientes opciones:</p>
             <ul>
                 <li>Legacy camera</li>
                 <li>i2c</li>
                 <li>1wire</li>
             </ul>
-            <p>Ejecuta:</p>
+            <p>Reinicie su Raspberry con:</p>
             <pre><code>sudo reboot</code></pre>
 
-            <h3>Obtener scripts</h3>
-            <p>Reconéctate a la Raspberry Pi y clona el repositorio:</p>
-            <pre><code>git clone https://github.com/DrCarlimp/Datapek-cc/tree/development</code></pre>
+            <center><h1>Obtener scripts</h1></center>
+            <p>Reconéctese a la Raspberry Pi y clone el repositorio de Datapek:</p>
+            <pre><code>git clone https://github.com/jorge-riosmartinez/datapek_docs.git</code></pre>
 
-            <h3>Instalación de Dependencias</h3>
-            <p>Una vez conectado a la Raspberry Pi via SSH, ejecuta los siguientes comandos para instalar las dependencias necesarias:</p>
-
-            <h3>Diagnóstico</h3>
+            <center><h1>Diagnóstico</h1></center>
             <p>Ejecutar el diagnóstico que permite conocer el funcionamiento de los sensores:</p>
             <ul>
                 <li>Temperatura</li>
                 <li>IMU</li>
                 <li>LEDs</li>
             </ul>
+            <p>Esto lo puede hacer entrando al repositorio que recién clonó de Datapek y ejecutando el script diagnostico.py con los siguientes comandos:</p>
+            <pre><code>cd datapek_docs</code></pre>
             <pre><code>python firmware/utils/diagnostico.py</code></pre>
 
-            <h3>Uso</h3>
+            <center><h3>Uso de su Datapek configurado</h3></center>
             <p>Para iniciar la recolección de datos, es necesario usar el script <code>adquisicion_datos.py</code>. Dicho script toma los siguientes argumentos:</p>
             <pre><code>-n, --nombre_perro: Nombre del perro
 -p, --prueba: nombre de la prueba, por ejemplo juguete
@@ -135,21 +162,15 @@
                     </ul>
                 </ul>
             </ul>
-            <p>Ejemplo:</p>
-            <p>Habilitar zona wifi en teléfono móvil con las credenciales:</p>
-            <pre><code>SSID: wifi_datapek
-Password: 2023Datapek</code></pre>
-            <p>Una vez que el dispositivo esté conectado a la red, buscar la IP de Datapek.</p>
-            <p>Posteriormente abrir una aplicación de "terminal". Por ejemplo, Terminus. Usar la IP para conectarse mediante SSH al dispositivo:</p>
-            <pre><code>ssh uady@IP de Datapek
-por ejemplo
-ssh uady@192.168.68.100
-password: datapek2023</code></pre>
-            <p>Para la ejecución del script de adquisición de datos se puede correr esta instrucción:</p>
-            <pre><code>python firmware/adquisicion_datos.py -n doug -p test -d 20 --imu --camara --audio --temperatura</code></pre>
-            <p>Los argumentos relacionados con los sensores son opcionales, pueden elegirse únicamente los de interés para la prueba.</p>
+            
+            <p>Asegúrese de conectar el sensor de temperatura a su Datapek antes de usar el script de diagnóstico.</p>
+            <p>Para la ejecución del script de adquisición de datos asegúrese de encontrarse dentro del repositorio clonado de Datapek y use el siguiente comando::</p>
+            <pre><code>python firmware/adquisicion_datos.py -n doug -p test -d 10 --imu --camara --audio --temperatura</code></pre>
+            <p>Con este comando se creará una nueva carpeta llamada "doug" en el directorio actual, esta carpeta contendrá la carpeta test y dentro se guardarán los archivos resultantes de las pruebas de los sensores.</p>
+            <p>Puede cambiar el nombre del perro y de la carpeta test.</p>
+            <p>Los argumentos relacionados con los sensores (--imu --camara --audio --temperatura) son opcionales, pueden elegirse únicamente los de interés para la prueba.</p>
             <p>Finalmente, los datos obtenidos se pueden encontrar en:</p>
-            <pre><code>/home/uady/doug/test</code></pre>
+            <pre><code>datapek_docs/doug/test</code></pre>
         </section>
 
 
