@@ -63,6 +63,11 @@ main {
     padding: 1rem;
 }
 
+.datapek-imagenes {
+    width: 200px;
+    height: auto;
+  }
+
 footer {
     background: #333;
     color: #fff;
