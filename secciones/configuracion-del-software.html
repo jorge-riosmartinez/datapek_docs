@@ -44,22 +44,31 @@ pip install RPi.GPIO</code></pre>
     </main>
 
     <main>
-        <section id="configuracion-del-software">
+        <section id="configuracion-software">
             <h2>Configuración del Software</h2>
-            <ol>
-                <li>Prepara la tarjeta SD con el sistema operativo Raspberry Pi OS.</li>
-                <li>Configura el usuario y la contraseña durante la instalación inicial.</li>
-                <li>Habilita SSH y encuentra la dirección IP de la Raspberry Pi.</li>
-                <li>Conéctate a la Raspberry Pi mediante SSH.</li>
-                <li>Ejecuta los comandos para instalar las dependencias necesarias.</li>
-            </ol>
+            <h3>Instalación del Sistema Operativo</h3>
+            <p>Para comenzar, debes preparar una tarjeta SD con el sistema operativo Raspberry Pi OS. Puedes descargar el Raspberry Pi Imager desde el <a href="https://www.raspberrypi.com/software/" target="_blank">sitio oficial</a>.</p>
+            <h3>Configuración Inicial</h3>
+            <p>Una vez que hayas instalado el sistema operativo, configura el usuario y la contraseña durante la instalación inicial. Habilita SSH para acceder a tu Raspberry Pi de forma remota y encuentra la dirección IP de la Raspberry Pi en tu red local.</p>
+            <h3>Instalación de Bibliotecas y Dependencias</h3>
+            <p>Conéctate a la Raspberry Pi mediante SSH y ejecuta los siguientes comandos para instalar las bibliotecas necesarias:</p>
+            <pre><code>sudo apt update && sudo apt upgrade</code></pre>
         </section>
 
         <section>
             <h2>Instalando dependencias</h2>
-            <p>Para instalar todas las dependencias necesarias ejecuta el script instalar_dependencias.sh de la siguiente forma:</p>
-            <center><pre><code>chmod +x instalar_dependencias.sh</code></pre></center>
-
+            <p>Para simplificar la instalación de todas las dependencias necesarias, hemos creado un script llamado <code>instalar_dependencias.sh</code>. Para ejecutarlo, sigue estos pasos:</p>
+            <ol>
+                <li>Descarga el script desde el repositorio de Datapek:</li>
+                <pre><code>git clone https://github.com/jorge-riosmartinez/datapek_docs.git</code></pre>
+                <li>Navega al directorio donde se encuentra el script:</li>
+                <pre><code>cd datapek_docs</code></pre>
+                <li>Haz que el script sea ejecutable:</li>
+                <pre><code>chmod +x instalar_dependencias.sh</code></pre>
+                <li>Ejecuta el script:</li>
+                <pre><code>./instalar_dependencias.sh</code></pre>
+            </ol>
+            <p>Este script se encargará de instalar todas las dependencias y bibliotecas necesarias para que tu Datapek funcione correctamente.</p>
         </section>
     </main>
     
