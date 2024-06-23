@@ -20,7 +20,6 @@
             <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/instalacion-del-hardware.html">Instalación del Hardware</a></li>
             <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/configuracion-del-software.html">Configuración del Software</a></li>
             <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/uso-de-los-sensores-y-perifericos.html">Uso de los Sensores y Periféricos</a></li>
-            <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/integracion-y-proyectos-ejemplares.html">Integración y Proyectos Ejemplares</a></li>
             <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/solucion-de-problemas.html">Solución de Problemas</a></li>
             <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/mantenimiento-y-seguridad.html">Mantenimiento y Seguridad</a></li>
             <li><a href="https://jorge-riosmartinez.github.io/datapek_docs/secciones/apendices.html">Apéndices</a></li>
@@ -28,42 +27,43 @@
         </ul>
     </nav>
             
-    <main>
-        <section id="uso-sensores">
-            <h2>Prueba de diagnóstico de los Sensores y Periféricos</h2>
-            <p>Para probar el correcto funcionamiento de tu Datapek primero asegúrate de haber establecido conexión por SSH y estar dentro del repositorio que clonaste anteriormente en la sección <a href="https://greco140.github.io/datapek.github.io/secciones/configuracion-del-software.html">Configuración del Software</a>, esto lo puedes hacer primero ubicando tu directorio/carpeta actual de trabajo con el comando:</p>
-                <center><pre><code>pwd</code></pre></center>
-            <p>De esta forma sabrás el directorio en el que te encuentras, si no estás dentro del repositorio clonado de Datapek, entonces muestra los directorios que se encuentran dentro de tu directorio actual con el comando:</p>
-                <center><pre><code>ls -la</code></pre></center>
-            <p>Prueba a moverte un directorio que haya resultado del comando anterior con el comando:</p>
-                <center><pre><code>cd nombre_de_la_carpeta</code></pre></center>
-            <p>Repite estos pasos hasta estar dentro del repositorio de Datapek. En caso de que quieras retroceder una carpeta puedes usar el comando:</p>
-                <center><pre><code>cd ..</code></pre></center>
-            <p>Una vez que estás seguro de estar dentro del repositorio que clonaste de Datapek, asegurate de comprobar el correcto funcionamiento de los sensores, ejecutando el script de diagnóstico:</p>
-                <center><pre><code>python firmware/utils/diagnostico.py</code></pre></center>
-            <p>Si todos los sensores funcionan correctamente entonces estás listo para iniciar la recolección de datos, para ello usa el script <code>adquisicion_datos.py</code> con los siguientes argumentos:</p>
-                <center><pre><code>python firmware/adquisicion_datos.py -n firulais -p prueba-1 -d 10 --imu --camara --audio --temperatura</code></pre></center>
-
-            <h3>Descripción de los parámetros:</h3>
-            <ul>
-                <li><code>-n</code>, <code>--nombre_perro</code>: Nombre del perro. Por ejemplo, <code>firulais</code>.</li>
-                <li><code>-p</code>, <code>--prueba</code>: Nombre de la prueba. Por ejemplo, <code>prueba-1</code>.</li>
-                <li><code>-d</code>, <code>--duracion</code>: Duración de la prueba en segundos. Por ejemplo, <code>10</code>.</li>
-                <li><code>--imu</code>: Activa la recolección de datos del IMU (Unidad de Medición Inercial).</li>
-                <li><code>--camara</code>: Activa la grabación de video de la cámara.</li>
-                <li><code>--audio</code>: Activa la grabación de audio del micrófono.</li>
-                <li><code>--temperatura</code>: Activa la recolección de datos del sensor de temperatura <code>ds18b20</code>.</li>
-            </ul>
-            
-            <p>Ejemplo de uso:</p>
-            <center><pre><code>python firmware/adquisicion_datos.py -n firulais -p prueba-1 -d 10 --imu --camara --audio --temperatura</code></pre></center>
-            <p>Este comando recopilará datos durante 10 segundos del perro llamado <code>firulais</code> para la prueba llamada <code>prueba-1</code>. Los datos incluirán lecturas del IMU, grabación de video, grabación de audio y datos de temperatura.</p>
-        </section>
+    <main>  
 
         <section id="uso-sensores">
-            <h2>Cámara</h2>
-            
-            <h2>¿Cómo grabo solo video?</h2>
+            <section>
+                <center><h1>IMPORTANTE</h1></center>
+                <p>Para usar los sensores de su Datapek, asegúrese de: </ins></p>
+                <ul>
+                    <li>Tener encendido su Datapek.</li>
+                    <li>Tener conexión por VNC y/o SSH</li>
+                    <li>Haber clonado el repositorio oficial de Datapek</li>
+                    <li>Estar dentro del repositorio que clonó de Datapek</li>
+                    <li>Ejecutar el comando <pre><code>chmod +x instalar_dependencias.sh</ins></code></pre></li>
+                    <li>Ejecutar el comando <pre><code>./instalar_dependencias.sh</ins></code></pre></li>
+                </ul>
+                <p>Con estos pasos su Datapek está listo para usarse.</p>
+
+                <center><h1>¿Cómo uso mi Datapek?</h1></center>
+                <p>Para el uso de todos los sensores, desde su Datapek, asegúrese de estar en el directorio que clonó de Datapek oficial en la sección de Bienvenida/Manual de Usuario - Datapek.</p>
+                <p>Para grabar ejecute el comando <pre><code>./ejecutar.sh</code></pre> se desplegará un menú como el siguiente:</p>
+                <center><img src="../assets/capturas/menu_ejecutar_programa.png" height="500" alt="menú del script ejecutar.sh"></center>
+                <p>Siéntase libre de elegir el <b>número</b> de las opciones que usted desée dentro del menú de opciones, una vez que esté listo seleccione la opción número 5 para ejecutar el programa.</p>
+
+                <center><h1>¿Cómo recupero los datos y videos recolectados?</h1></center>
+                <p>Una vez que ha ejecutado el programa y su Datapek ha terminado la recolección de datos, querrá poder visualizarlos, para ello, partiendo del repositorio oficial clonado de Datapek, utilice el comando <pre><code>cd nombre_del_perro/nombre_de_la_prueba</code></pre>  para moverse a la carpeta donde se encuentran sus resultados.</p>
+                <p>Donde:</p>
+                <ul>
+                    <li><b>nombre_del_perro</b> se refiere al nombre que usted le asignó durante la ejecución del programa al perro, en el ejemplo usamos el nombre de solovino</li>
+                    <li><b>nombre_de_la_prueba</b> se refiere al nombre que usó para la prueba del perro, en el ejemplo usamos el nombre de prueba-1</li>
+                </ul>
+                <p>A continuación se muestra el ejemplo completo:</p>
+                <center><img src="../assets/capturas/menu_ejecutar_programa.png" height="500" alt="menú del script ejecutar.sh"></center>
+                <center><img src="../assets/capturas/menu_ejecutar_programa_parte_2.png" height="500" alt="recuperando datos de solovino/prueba-1/IMU.txt"></center>
+
+                <h1>¿Cómo puedo hacer stream en tiempo real?</h1>
+                
+            </section>
+
         </section>
     </main>
 

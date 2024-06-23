@@ -63,6 +63,10 @@ main {
     padding: 1rem;
 }
 
+h1 {
+    font-size: 2em;
+}
+
 .datapek-imagenes {
     width: 200px;
     height: auto;
