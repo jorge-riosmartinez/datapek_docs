@@ -2,6 +2,11 @@
 
 El proyecto Datapek, desarrollado por CarlimpCorp, representa un avance significativo en el campo del monitoreo y análisis de comportamientos caninos. Utilizando la versátil Raspberry Pi Zero, Datapek integra múltiples sensores para recolectar datos cruciales sobre la salud y comportamiento de los perros. Este innovador proyecto es liderado por el Doctor Jorge Alberto Ríos Martínez de la Universidad Autónoma de Yucatán, quien junto a su equipo de investigación, está explorando las aplicaciones prácticas de esta tecnología en diversos ámbitos de la vida real.
 
+## Documentación
+Visite la 
+<a href="https://jorge-riosmartinez.github.io/datapek_docs/" target="_blank">Documentación Oficial de Datapek</a>
+
+
 ## Objetivos del Proyecto
 
 El principal objetivo de Datapek es crear un sistema capaz de monitorear y analizar en tiempo real las diferentes acciones y condiciones de los perros. Para lograr esto, se han implementado sensores que registran:
