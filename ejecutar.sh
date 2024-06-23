@@ -11,8 +11,8 @@ turquoiseColour="\e[0;36m\033[1m"
 grayColour="\e[0;37m\033[1m"
 
 function ctrl_c() {
-	echo -e "\n\n ${redColour} [!] Saliendo...${endColour}\n"
-	tput cnorm && exit 1
+    echo -e "\n\n ${redColour}[!] Saliendo...${endColour}\n"
+    tput cnorm && exit 1
 }
 
 # ctrl+c
@@ -20,13 +20,13 @@ trap ctrl_c INT
 
 # Función para mostrar el menú y obtener la selección del usuario
 mostrar_menu() {
-    echo "Seleccione las opciones que desea activar:"
-    echo "1. Unidad de Medición Inercial (IMU)"
-    echo "2. Cámara"
-    echo "3. Micrófono"
-    echo "4. Temperatura"
-    echo "5. Ejecutar"
-    echo "6. Salir"
+    echo -e "${blueColour}Seleccione las opciones que desea activar:${endColour}"
+    echo -e "${yellowColour}1. Unidad de Medición Inercial (IMU)${endColour}"
+    echo -e "${yellowColour}2. Cámara${endColour}"
+    echo -e "${yellowColour}3. Micrófono${endColour}"
+    echo -e "${yellowColour}4. Temperatura${endColour}"
+    echo -e "${yellowColour}5. Ejecutar${endColour}"
+    echo -e "${yellowColour}6. Salir${endColour}"
 }
 
 # Inicializar variables de opciones
@@ -36,45 +36,45 @@ audio=""
 temperatura=""
 
 # Obtener el nombre del perro, nombre de la prueba y duración de la prueba
-read -p "Ingrese el nombre del perro: " nombre_perro
-read -p "Ingrese el nombre de la prueba: " nombre_prueba
-read -p "Ingrese la duración de la prueba en segundos: " duracion
+echo -ne "${grayColour}Ingrese el nombre del perro: ${endColour}" && read nombre_perro
+echo -ne "${grayColour}Ingrese el nombre de la prueba: ${endColour}" && read nombre_prueba
+echo -ne "${grayColour}Ingrese la duración de la prueba en segundos: ${endColour}" && read duracion
 
 # Loop para mostrar el menú y procesar la entrada del usuario
 while true; do
     mostrar_menu
-    read -p "Seleccione una opción (1-6): " opcion
+    echo -ne "${grayColour}Seleccione una opción (1-6): ${endColour}" && read opcion
 
     case $opcion in
         1)
             imu="--imu"
-            echo "Unidad de Medición Inercial (IMU) activada."
+            echo -e "${greenColour}Unidad de Medición Inercial (IMU) activada.${endColour}"
             ;;
         2)
             camara="--camara"
-            echo "Cámara activada."
+            echo -e "${greenColour}Cámara activada.${endColour}"
             ;;
         3)
             audio="--audio"
-            echo "Micrófono activado."
+            echo -e "${greenColour}Micrófono activado.${endColour}"
             ;;
         4)
             temperatura="--temperatura"
-            echo "Temperatura activada."
+            echo -e "${greenColour}Temperatura activada.${endColour}"
             ;;
         5)
             # Ejecutar el comando de Python con las opciones seleccionadas
             comando="python firmware/adquisicion_datos.py -n $nombre_perro -p $nombre_prueba -d $duracion $imu $camara $audio $temperatura"
-            echo "Ejecutando: $comando"
+            echo -e "${blueColour}Ejecutando: $comando${endColour}"
             eval $comando
             exit 0
             ;;
         6)
-            echo "Saliendo..."
+            echo -e "${redColour}Saliendo...${endColour}"
             exit 0
             ;;
         *)
-            echo "Opción no válida. Intente de nuevo."
+            echo -e "${redColour}Opción no válida. Intente de nuevo.${endColour}"
             ;;
     esac
 done
