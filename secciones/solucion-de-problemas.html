@@ -37,8 +37,40 @@
                     <p>Navegue a System Options -> Boot / Auto Login -> Desktop / CLI y seleccione la opción <b>B4 Desktop GUI, automatically logged in as 'datapek' user.</b></p>
                 </div>
 
-                <li>Problema común 2 y solución...</li>
+                <div>
+                    <li><b>Problema: El sensor de temperatura no funciona.</b></li>
+                    <p>Verifique que el sensor esté correctamente conectado a los pines GPIO de la Raspberry Pi.</p>
+                    <p>Ejecute el comando <pre><code>sudo modprobe w1-gpio</code></pre> y <pre><code>sudo modprobe w1-therm</code></pre> para cargar los módulos necesarios.</p>
+                    <p>Luego, revise el archivo de dispositivos en <pre><code>/sys/bus/w1/devices/</code></pre> para ver si el sensor aparece listado.</p>
+                </div>
+
+                <div>
+                    <li><b>Problema: No se detecta el módulo I2C.</b></li>
+                    <p>Asegúrese de que el módulo I2C esté habilitado ejecutando <pre><code>sudo raspi-config</code></pre> y navegando a Interfacing Options -> I2C -> Enable.</p>
+                    <p>Verifique las conexiones físicas de los dispositivos I2C y use el comando <pre><code>sudo i2cdetect -y 1</code></pre> para escanear los dispositivos I2C conectados.</p>
+                </div>
+
+                <div>
+                    <li><b>Problema: El micrófono no captura sonido.</b></li>
+                    <p>Compruebe que el micrófono esté correctamente conectado y que esté seleccionado como dispositivo de entrada predeterminado.</p>
+                    <p>Utilice el comando <pre><code>arecord -l</code></pre> para listar los dispositivos de captura de audio disponibles y verifique si el micrófono aparece en la lista.</p>
+                    <p>Intente grabar un audio de prueba usando <pre><code>arecord -D plughw:1,0 -d 10 test.wav</code></pre> (ajustando "plughw:1,0" según sea necesario) y reproduzca el archivo grabado con <pre><code>aplay test.wav</code></pre>.</p>
+                </div>
+
+                <div>
+                    <li><b>Problema: La cámara no funciona.</b></li>
+                    <p>Verifique que la cámara esté correctamente conectada al puerto CSI de la Raspberry Pi.</p>
+                    <p>Ejecute <pre><code>raspistill -o test.jpg</code></pre> para capturar una imagen de prueba. Si recibe un error, asegúrese de que la cámara esté habilitada en <pre><code>sudo raspi-config</code></pre> bajo Interfacing Options -> Camera.</p>
+                </div>
+
+                <div>
+                    <li><b>Problema: No se puede instalar un paquete con pip.</b></li>
+                    <p>Compruebe que tiene una conexión a Internet activa.</p>
+                    <p>Actualice pip con <pre><code>pip install --upgrade pip</code></pre></p>
+                    <p>Intente instalar el paquete nuevamente. Si el problema persiste, use <pre><code>pip install nombre_del_paquete --no-cache-dir</code></pre> para evitar el uso de caché.</p>
+                </div>
             </ul>
+            <br><br><br><br>
         </section>
     </main>
 
