@@ -1,6 +1,6 @@
 # Introducción
 
-El proyecto Datapek, desarrollado por CarlimpCorp, representa un avance significativo en el campo del monitoreo y análisis de comportamientos caninos. Utilizando la versátil Raspberry Pi Zero, Datapek integra múltiples sensores para recolectar datos cruciales sobre la salud y comportamiento de los perros. Este innovador proyecto es liderado por el Doctor Jorge Alberto Ríos Martínez de la Universidad Autónoma de Yucatán, quien junto a su equipo de investigación, está explorando las aplicaciones prácticas de esta tecnología en diversos ámbitos de la vida real.
+El proyecto Datapek, desarrollado dentro del marco del proyecto <a href="https://tzuku.cicese.mx/" target="_blank">Tzuku</a> por la Facultad de Matemáticas de la Universidad Autónoma de Yucatán, representa un avance significativo en el campo del monitoreo y análisis de comportamientos caninos. Utilizando la versátil Raspberry Pi Zero, Datapek integra múltiples sensores para recolectar datos cruciales sobre la salud y comportamiento de los perros. Este innovador proyecto es liderado por el Doctor Jorge Alberto Ríos Martínez, quien junto a su equipo de investigación, está explorando las aplicaciones prácticas de esta tecnología en diversos ámbitos de la vida real.
 
 ## Documentación
 Visite la 
@@ -51,8 +51,7 @@ Para entrenadores de perros, Datapek ofrece una herramienta avanzada para evalua
 
 ## Conclusión
 
-El proyecto Datapek de CarlimpCorp, bajo la dirección del Doctor Jorge Alberto Ríos Martínez de la Universidad Autónoma de Yucatán, es un ejemplo destacado de cómo la tecnología puede ser utilizada para mejorar nuestra comprensión y cuidado de los animales. Al integrar sensores avanzados y plataformas de procesamiento de datos, Datapek no solo facilita el monitoreo de la salud y comportamiento de los perros, sino que también abre nuevas posibilidades en la investigación y aplicación práctica de la ciencia del comportamiento animal. Con el desarrollo continuo y la implementación de nuevas funcionalidades, Datapek busca revolucionar la forma en que interactuamos y cuidamos a nuestros compañeros caninos.
-
+El proyecto Datapek, desarrollado dentro del marco del proyecto Tzuku (https://tzuku.cicese.mx/) por la Facultad de Matemáticas de la Universidad Autónoma de Yucatán, bajo la dirección del Doctor Jorge Alberto Ríos Martínez, es un ejemplo destacado de cómo la tecnología puede ser utilizada para mejorar nuestra comprensión y cuidado de los animales. Al integrar sensores avanzados y plataformas de procesamiento de datos, Datapek no solo facilita el monitoreo de la salud y comportamiento de los perros, sino que también abre nuevas posibilidades en la investigación y aplicación práctica de la ciencia del comportamiento animal. Con el desarrollo continuo y la implementación de nuevas funcionalidades, Datapek busca revolucionar la forma en que interactuamos y cuidamos a nuestros compañeros caninos.
 ---
 
-&copy; 2024 CarlimpCorp. Todos los derechos reservados.
+© 2024 Facultad de Matemáticas, Universidad Autónoma de Yucatán. Todos los derechos reservados.
