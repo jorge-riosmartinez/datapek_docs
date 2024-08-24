@@ -1,6 +1,6 @@
 # Datapek-cc
 
-**Datapek-cc** es un proyecto desarrollado por CarlimpCorp. Este repositorio contiene el firmware necesario para configurar y operar una Raspberry Pi como parte del sistema Datapek.
+**Datapek** es un proyecto desarrollado dentro del marco del proyecto Tzuku por la Facultad de Matemáticas de la Universidad Autónoma de Yucatán. Este repositorio contiene el firmware necesario para configurar y operar una Raspberry Pi como parte del sistema Datapek.
 
 ## Instalación del Firmware
 
