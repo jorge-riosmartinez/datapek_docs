@@ -51,7 +51,7 @@ Para entrenadores de perros, Datapek ofrece una herramienta avanzada para evalua
 
 ## Conclusión
 
-El proyecto Datapek, desarrollado dentro del marco del proyecto Tzuku (https://tzuku.cicese.mx/) por la Facultad de Matemáticas de la Universidad Autónoma de Yucatán, bajo la dirección del Doctor Jorge Alberto Ríos Martínez, es un ejemplo destacado de cómo la tecnología puede ser utilizada para mejorar nuestra comprensión y cuidado de los animales. Al integrar sensores avanzados y plataformas de procesamiento de datos, Datapek no solo facilita el monitoreo de la salud y comportamiento de los perros, sino que también abre nuevas posibilidades en la investigación y aplicación práctica de la ciencia del comportamiento animal. Con el desarrollo continuo y la implementación de nuevas funcionalidades, Datapek busca revolucionar la forma en que interactuamos y cuidamos a nuestros compañeros caninos.
+El proyecto Datapek, desarrollado dentro del marco del proyecto <a href="https://tzuku.cicese.mx/" target="_blank">Tzuku</a> por la Facultad de Matemáticas de la Universidad Autónoma de Yucatán, bajo la dirección del Doctor Jorge Alberto Ríos Martínez, es un ejemplo destacado de cómo la tecnología puede ser utilizada para mejorar nuestra comprensión y cuidado de los animales. Al integrar sensores avanzados y plataformas de procesamiento de datos, Datapek no solo facilita el monitoreo de la salud y comportamiento de los perros, sino que también abre nuevas posibilidades en la investigación y aplicación práctica de la ciencia del comportamiento animal. Con el desarrollo continuo y la implementación de nuevas funcionalidades, Datapek busca revolucionar la forma en que interactuamos y cuidamos a nuestros compañeros caninos.
 
 ---
 
