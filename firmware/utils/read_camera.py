@@ -1,7 +1,7 @@
 import picamera
 import time
 
-# Duración del video en segundos
+# Duración del video en segundos.
 duracion_del_video = 10
 
 # Crear una instancia de la cámara

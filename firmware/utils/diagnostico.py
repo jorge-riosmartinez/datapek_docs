@@ -2,7 +2,7 @@ from tqdm import tqdm
 import RPi.GPIO as GPIO
 import time
 
-# Configuración de los pines GPIO
+# Configuración de los pines GPIO.
 led_pins = [17, 18, 27]
 GPIO.setmode(GPIO.BCM)  # Usa el número de pin del Broadcom SOC Channel
 GPIO.setup(led_pins, GPIO.OUT, initial=GPIO.LOW)

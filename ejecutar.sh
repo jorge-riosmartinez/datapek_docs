@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#
 # Colors
 greenColour="\e[0;32m\033[1m"
 endColour="\033[0m\e[0m"
@@ -40,6 +40,15 @@ echo -ne "${grayColour}Ingrese el nombre del perro: ${endColour}" && read nombre
 echo -ne "${grayColour}Ingrese el nombre de la prueba: ${endColour}" && read nombre_prueba
 echo -ne "${grayColour}Ingrese la duración de la prueba en segundos: ${endColour}" && read duracion
 
+# Crear la carpeta dentro de "data" si no existe
+data_dir="./data/$nombre_perro"
+if [ ! -d "$data_dir" ]; then
+    mkdir -p "$data_dir"
+    echo -e "${greenColour}Carpeta creada en: $data_dir${endColour}"
+else
+    echo -e "${blueColour}Carpeta ya existe: $data_dir${endColour}"
+fi
+
 # Loop para mostrar el menú y procesar la entrada del usuario
 while true; do
     mostrar_menu
@@ -78,3 +87,4 @@ while true; do
             ;;
     esac
 done
+

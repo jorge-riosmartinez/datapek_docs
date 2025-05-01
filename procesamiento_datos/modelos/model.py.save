@@ -1,0 +1,48 @@
+import joblib
+import os
+
+def predict_on_last_document(df):
+
+    
+    try:
+        rf_classifier = joblib.load('dog_behavior_classifier.joblib')
+    except Exception as e:
+        raise Exception(f"Loading failed: {str(e)}\n"
+                    "1. Ensure both files exist in your directory\n"
+                    "2. Verify you didn't change the filenames")
+
+    required_features = rf_classifier.feature_names_in_
+    missing_features = set(required_features) - set(df.columns)
+    
+    if missing_features:
+        raise ValueError(f"Missing features in csv document: {missing_features}")
+
+    X = df[required_features]
+    
+    try:
+        numeric_preds = rf_classifier.predict(X)
+        text_preds = label_encoder.inverse_transform(numeric_preds)
+        
+        df['comp_pred'] = text_preds
+        
+        if hasattr(rf_classifier, 'predict_proba'):
+            probas = rf_classifier.predict_proba(X)
+            for i, class_name in enumerate(label_encoder.classes_):
+                df[f'prob_{class_name}'] = probas[:, i]
+                
+        return df
+    
+    except Exception as e:
+        print(f"Prediction failed: {str(e)}")
+        return None
+
+
+
+"""
+result_df = predict_on_last_document(data_with_orientation)
+if result_df is not None:
+    print("Successfully processed last document with predictions:")
+    print(result_df[['perro', 'timestamp', 'comp_pred']].head(20000))
+else:
+    print("Failed to process document")"
+"""

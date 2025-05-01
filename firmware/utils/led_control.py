@@ -3,7 +3,7 @@ from time import sleep
 
 class ControladorLEDs:
     def __init__(self):
-        # Inicialización de LEDs
+        # Inicialización de LEDs.
         self.alarma = LED(17)
         self.parpadear = LED(18)
         self.estatus = LED(27)

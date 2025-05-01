@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-# Opción para desactivar advertencias, descomenta la siguiente línea si deseas hacerlo
+# Opción para desactivar advertencias descomenta la siguiente línea si deseas hacerlo
 # GPIO.setwarnings(False)
 
 # Limpiar todos los pines al inicio (opcional)

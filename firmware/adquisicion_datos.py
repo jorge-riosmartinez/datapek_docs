@@ -1,15 +1,16 @@
 import threading
 import time
 from picamera import PiCamera
-from utils.read_mcu import GY_91, ACCEL_XOUT_H, ACCEL_YOUT_H, ACCEL_ZOUT_H, GYRO_XOUT_H, GYRO_YOUT_H, GYRO_ZOUT_H
+from utils.read_mcu import GY_91
 from utils.led_control import ControladorLEDs
-# print("test")
 import sounddevice as sd
 import sys
 import scipy.io.wavfile as wav
 import os
 import argparse
 
+time.sleep(0.1)
+DATA_DIR = "./data"
 
 def record_video(duration, folder_name):
     with PiCamera() as camera:
@@ -25,14 +26,21 @@ def collect_sensor_data(duration, folder_name, sensor):
         start_time = time.time()
         while time.time() - start_time < duration:
             elapsed_time = time.time() - start_time
-            accel_x = sensor.read_raw_data(ACCEL_XOUT_H)
-            accel_y = sensor.read_raw_data(ACCEL_YOUT_H)
-            accel_z = sensor.read_raw_data(ACCEL_ZOUT_H)
-            gyro_x = sensor.read_raw_data(GYRO_XOUT_H)
-            gyro_y = sensor.read_raw_data(GYRO_YOUT_H)
-            gyro_z = sensor.read_raw_data(GYRO_ZOUT_H)
+
+            accel_data = sensor.get_accel_data()
+            gyro_data = sensor.get_gyro_data()
+         
+            accel_x = accel_data['x']
+            accel_y = accel_data['y']
+            accel_z = accel_data['z']
+            
+            gyro_x = gyro_data['x']
+            gyro_y = gyro_data['y']
+            gyro_z = gyro_data['z']
+       
             file.write(f"{elapsed_time:.2f}, {accel_x}, {accel_y}, {accel_z}, {gyro_x}, {gyro_y}, {gyro_z}\n")
-            time.sleep(0.01)
+            file.flush()  # Force write to disk
+            time.sleep(0.01)  # 100Hz sampling rate
 
 def record_audio(duration, folder_name, sample_rate=44100, channels=1):
     audio_path = f'{folder_name}/audio.wav'
@@ -52,23 +60,10 @@ def collect_temperature_data(duration, folder_name):
                 break
             temp_c = read_temp()
             file.write(f"{elapsed_time:.2f}, {temp_c}\n")
+            file.flush()  # Force write to disk
             time.sleep(1)  # Read temperature every second
 
-def read_temp_raw():
-    with open(device_file, 'r') as file:
-        lines = file.readlines()
-    return lines
-
-def read_temp():
-    lines = read_temp_raw()
-    while lines[0].strip()[-3:] != 'YES':
-        time.sleep(0.2)
-        lines = read_temp_raw()
-    equals_pos = lines[1].find('t=')
-    if equals_pos != -1:
-        temp_string = lines[1][equals_pos+2:]
-        return float(temp_string) / 1000.0
-    import os
+# Move this function definition before it's used
 def find_temp_device(base_path='/sys/bus/w1/devices/'):
     """
     Encuentra el primer dispositivo 1-Wire en el directorio especificado y devuelve la ruta al archivo w1_slave.
@@ -92,6 +87,37 @@ def find_temp_device(base_path='/sys/bus/w1/devices/'):
 
 # Ruta al dispositivo de temperatura
 device_file = find_temp_device()
+
+def read_temp_raw():
+    try:
+        with open(device_file, 'r') as file:
+            lines = file.readlines()
+        return lines
+    except (TypeError, FileNotFoundError) as e:
+        print(f"Error reading temperature device: {e}")
+        return ["", ""]
+
+def read_temp():
+    if device_file is None:
+        print("No temperature device found")
+        return 0.0
+        
+    lines = read_temp_raw()
+    try:
+        while lines[0].strip()[-3:] != 'YES':
+            time.sleep(0.2)
+            lines = read_temp_raw()
+        equals_pos = lines[1].find('t=')
+        if equals_pos != -1:
+            temp_string = lines[1][equals_pos+2:]
+            return float(temp_string) / 1000.0
+        return 0.0  # Return a default value if temperature can't be read
+    except (IndexError, ValueError) as e:
+        print(f"Error parsing temperature data: {e}")
+        return 0.0
+
+# Ruta al dispositivo de temperatura
+device_file = find_temp_device()
 led = ControladorLEDs()
 
 def main():
@@ -108,11 +134,14 @@ def main():
     args = parser.parse_args()
 
 
-    folder_name = f"{args.nombre_perro}/{args.prueba}"
+    folder_name = os.path.join(DATA_DIR, args.nombre_perro, args.prueba)
     duration = args.duracion
+
     sensor = GY_91()
+
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
+
     print("Start")
     threads = []
 
@@ -143,3 +172,4 @@ if __name__ == "__main__":
     led.grabacion("encender")
     main()
     led.grabacion("apagar")
+
